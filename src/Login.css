@@ -10,6 +10,11 @@
   height: 95px;
   margin-top: 35px;
 }
+/* .register__logo {
+  height: 95px;
+  margin-top: 35px;
+} */
+
 
 .login__container {
   display: flex;
@@ -86,6 +91,7 @@ input:focus {
 .sideinfo {
   display: flex;
   flex-direction: column;
+
 }
 
 .sideinfo > h5 {

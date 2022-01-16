@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from "./firebase";
 import "./Login.css";
 import {
-  BrowserRouter as Router,
+  BrowserzRouter as Router,
   Switch,
   Route,
   Link,
@@ -38,6 +38,9 @@ function Login() {
         }
       });
   };
+
+
+  
   return (
     <div className="login">
       <img
@@ -70,10 +73,12 @@ function Login() {
           <center>
             <div class="sideinfo">
               <h5>Esqueceu a senha?</h5>
-              <Link to="/register" style={{ textDecoration: "none" }}>
-                <button class="rtd">Criar nova conta</button>
+              <Link to="/register">
+                <button class="rtd" style={{ textDecoration: "none" }}>
+                  Criar nova conta
+                </button>
               </Link>
-            </div>
+            </div>  
           </center>
         </form>
       </div>

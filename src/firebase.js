@@ -1,6 +1,8 @@
+//Credencias firebase
 import firebase from "firebase";
 
 const firebaseApp = firebase.initializeApp({
+  //Credencias
   apiKey: "AIzaSyBPndIc_UkTx5yCLFlmC6t-jve1iAmrTrI",
   authDomain: "facebook-clone-7e8a5.firebaseapp.com",
   projectId: "facebook-clone-7e8a5",
