@@ -22,20 +22,19 @@
   border: 1px solid #dddfe2;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-  height: 312px;
-  width: 396px;
+  height: auto;
+  width: 380px;
   background-color: #fff;
   text-align: center;
-
-  padding-top: 60px;
+  padding-bottom: 0.5em;
 }
 
 .login__container > h3 {
-  font-weight: 400;
   margin-top: 24px;
   margin-bottom: 20px;
   font-family: Helvectica, Arial, sans-serif;
   text-align: center;
+  
 }
 
 input:focus {  
@@ -55,7 +54,7 @@ input:focus {
   padding-left: 20px;
   /*   background: #FFFFFF url(/rsrc.php/v3/yO/r/YQNfPR9MJfx.png) repeat-x; */
   border: 1px solid #dddfe2;
-  color: #1d2129;
+  color: #1c1e21;
   line-height: 16px;
   font-size: 17px;
   vertical-align: middle;
@@ -80,10 +79,10 @@ input:focus {
   justify-content: center;
   background-color: #1877f2;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 20px;
   line-height: 48px;
-  padding: 0 17px;
+  padding: 0 16px;
   width: 329px;
   color: #fff;
 }
@@ -110,6 +109,7 @@ input:focus {
   line-height: 48px;
   padding: 0x 16px;
   background-color: #42b72a;
+  border-color: #42b72a;
   cursor: pointer;
   color: #fff;
   font-weight: bold;

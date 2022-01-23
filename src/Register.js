@@ -57,7 +57,7 @@ function Register() {
         alt="img-register-facebook"
       />
       <div className="register__container">
-        <h1>Criar uma nova conta</h1>
+        <h1>Cadastre-se</h1>
         <p>É rápido e fácil.</p>
         <span className="hr3"></span>
         <form>
@@ -162,11 +162,11 @@ function Register() {
               className="register__dates"
               onChange={(e) => setBirthday([...birthday, e.target.value])}
             >
-              <option value="2018">Ano</option>
-              <option value="2018">2022</option>
-              <option value="2018">2021</option>
-              <option value="2018">2020</option>
-              <option value="2018">2019</option>
+              <option value="year">Ano</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
               <option value="2018">2018</option>
               <option value="2017">2017</option>
               <option value="2016">2016</option>

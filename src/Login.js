@@ -1,46 +1,53 @@
 import React, { useState } from "react";
 import { auth } from "./firebase";
 import "./Login.css";
-import {
-  BrowserzRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Login() {
   const history = useHistory("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [info, setInfo] = useState("");
 
   const login = (event) => {
     event.preventDefault();
-
+    if (email === "" || password === "") {
+      alert("Por Favor, entre com um email e uma senha válida");
+      return;
+    }
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        history.push("/register");
+      .then((a) => {
+        history.push("/home");
       })
-      .catch((e) => {
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          setInfo("Senha ou email incorretos");
+        } else {
+          errorMessage =
+            "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído ou é inexistente";
+          alert(errorMessage);
+          console.log(errorMessage);
+        }
+
+        /* if (email  === "" && password  === "") return;
         if (
           e.message ===
           "The password is invalid or the user does not have a password."
         ) {
-          alert("Email ou senha incorreta. Tente novamente");
+          setInfo("Senha incorreta. Tente novamente");
+          
         } else if (
           e.message ===
           "There is no user record corresponding to this identifier. The user may have been deleted."
         ) {
-          alert("Email ou senha incorreta. Tente novamente");
-        } else {
-          alert(e.message);
-        }
+          setInfo("Email ou senha incorreta. Tente novamente");
+        } */
       });
   };
 
-
-  
   return (
     <div className="login">
       <img
@@ -49,7 +56,7 @@ function Login() {
         alt="logo-facebook"
       />
       <div className="login__container">
-        {/*  <h3>Entrar no Facebook</h3> */}
+        <h2>Entrar no Facebook</h2>
         <form>
           <center>
             <input
@@ -63,8 +70,12 @@ function Login() {
               type="password"
               placeholder="Senha"
               onChange={(e) => setPassword(e.target.value)}
+              s
             />
           </center>
+
+          <p style={{ fontSize: "14px", color: "red" }}>{info}</p>
+
           <center>
             <button onClick={login} type="submit" class="login__login">
               Entrar
@@ -78,7 +89,7 @@ function Login() {
                   Criar nova conta
                 </button>
               </Link>
-            </div>  
+            </div>
           </center>
         </form>
       </div>
