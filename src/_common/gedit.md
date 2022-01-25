@@ -28,5 +28,13 @@ react-router-dom v6 Switch foi substituído por Routes e o component={() => <>Ho
 
 Eu adoro café e chá, eles realmente me ajudam a pensar,
 
+## Atualizar node com nvm no
+- instalando 
+1. Baixa repositorio 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+2. Verifica versões disponivél 
+nvm ls-remote 
+3. install 
+nvm install #.#.#” nvm install 16.13.2
 
 

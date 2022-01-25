@@ -1,5 +1,8 @@
+body {
+  background: url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;
+}
 .home {
-  background-color: #e9ebee;
+ 
   height: 100vh;
-  padding-top:10rem;
+  padding-top:10rem; 
 }
