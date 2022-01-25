@@ -1,34 +1,30 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 
+import { lazy } from "react";
+
+
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import LazyLoading from "./_common/LazyLoading";
+
+/* 
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
-
+ */
+const Login = lazy(()=> import("./Login"))
+const Register = lazy(()=> import("./Register"))
+const Home = lazy(()=> import("./Home"))
 
 function App() {
   return (
-    <div>
-      <div className="App">
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/home">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    </div>
+    <BrowserRouter>
+
+      <Switch>
+        <Route path="/login" component={LazyLoading(Login)} />
+        <Route path="/sing-up" component={LazyLoading(Register)} />
+        <Route path="/home" component={LazyLoading(Home)} />
+        <Redirect to="/login" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

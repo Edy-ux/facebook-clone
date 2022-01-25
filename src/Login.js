@@ -8,12 +8,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [info, setInfo] = useState("");
-
++
   const login = (event) => {
     event.preventDefault();
     if (email === "" || password === "") {
-      alert("Por Favor, entre com um email e uma senha válida");
-      return;
+      alert("Entre com um email e uma senha válidos");
+      return; 
     }
     auth
       .signInWithEmailAndPassword(email, password)
@@ -21,10 +21,11 @@ function Login() {
         history.push("/home");
       })
       .catch(function (error) {
-        var errorCode = error.code;
+         // Handle Errors here.
+        var errorCode = error.code; 
         var errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
-          setInfo("Senha ou email incorretos");
+          setInfo("Senha e/ ou email são inválidos");
         } else {
           errorMessage =
             "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído ou é inexistente";
@@ -32,8 +33,7 @@ function Login() {
           console.log(errorMessage);
         }
 
-        /* if (email  === "" && password  === "") return;
-        if (
+        /* 
           e.message ===
           "The password is invalid or the user does not have a password."
         ) {
@@ -56,7 +56,7 @@ function Login() {
         alt="logo-facebook"
       />
       <div className="login__container">
-        <h2>Entrar no Facebook</h2>
+        <h3>Entrar no Facebook</h3>
         <form>
           <center>
             <input
@@ -84,7 +84,7 @@ function Login() {
           <center>
             <div class="sideinfo">
               <h5>Esqueceu a senha?</h5>
-              <Link to="/register">
+              <Link to="/sing-up">
                 <button class="rtd" style={{ textDecoration: "none" }}>
                   Criar nova conta
                 </button>
