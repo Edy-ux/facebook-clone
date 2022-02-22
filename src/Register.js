@@ -1,54 +1,54 @@
-import React, { useState } from "react";
-import { auth, db } from "./firebase";
-import "./Register.css";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { auth, db } from './firebase';
+import './Register.css';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Register() {
-  const history = useHistory("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
+  const history = useHistory('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState([]);
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState('');
 
   const register = (event) => {
     event.preventDefault();
     if (birthday[2] >= 2010) {
-      return alert("You are not eligible to register to Facebook!");
+      return alert('You are not eligible to register to Facebook!');
     }
     auth.createUserWithEmailAndPassword(email, password).then((auth) => {
       if (auth.user) {
         auth.user
           .updateProfile({
-            displayName: firstName + " " + lastName,
+            displayName: firstName + ' ' + lastName,
             photoURL:
-              "https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg",
+              'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
           })
           .then((s) => {
-            db.collection("users")
+            db.collection('users')
               .doc(auth.user.uid)
               .set({
                 uid: auth.user.uid,
                 displayName: auth.user.displayName,
                 email: auth.user.email,
                 photoURL:
-                  "https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg",
+                  'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
                 birthday,
                 gender,
-                bio: "",
+                bio: '',
               })
               .then((r) => {
-                history.push("/");
+                history.push('/');
               });
           });
       }
-    })/* .catch(e => {
+    }); /* .catch(e => {
        alert("Error: " + e.message)
     }) */
   };
-
   return (
     <div className="register">
       <img
@@ -320,7 +320,7 @@ function Register() {
             </div>
           </div>
           <p className="register__policy">
-            Ao clicar em Cadastre-se, você concorda com nossos{" "}
+            Ao clicar em Cadastre-se, você concorda com nossos{' '}
             <span>Termos, Politica de Dados</span> e
             <span> Politica de Cookies</span>. Você poderá receber notificações
             por SMS e cancelar isso quando quiser.

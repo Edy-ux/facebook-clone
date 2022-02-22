@@ -19,14 +19,14 @@ function Login() {
       .then((a) => {
         history.push("/home");
       })
-      .catch(function (error) {
+      .catch(function (error) {	
          // Handle Errors here.
         var errorCode = error.code; 
         var errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
           setInfo("Senha e/ ou email são inválidos");
         } else {
-          errorMessage =
+          errorMessage =	
             "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído ou é inexistente";
           alert(errorMessage);
           console.log(errorMessage);
