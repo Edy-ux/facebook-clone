@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { auth, db } from './firebase';
-import './Register.css';
+import { auth, db } from '../firebase';
+import '../Register.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function Register() {
-  
   const history = useHistory('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,11 +13,15 @@ function Register() {
   const [birthday, setBirthday] = useState([]);
   const [gender, setGender] = useState('');
 
+
+
   const register = (event) => {
     event.preventDefault();
     if (birthday[2] >= 2010) {
       return alert('You are not eligible to register to Facebook!');
     }
+
+
     auth.createUserWithEmailAndPassword(email, password).then((auth) => {
       if (auth.user) {
         auth.user
@@ -41,14 +44,15 @@ function Register() {
                 bio: '',
               })
               .then((r) => {
-                history.push('/');
+                history.push('/login');
               });
           });
       }
-    }); /* .catch(e => {
+    }).catch(e => {
        alert("Error: " + e.message)
-    }) */
+    })
   };
+  
   return (
     <div className="register">
       <img
@@ -83,12 +87,12 @@ function Register() {
           </div>
           <center>
             <input
+              required
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
               type="email"
               placeholder="Email"
-              required
             />
           </center>
           <center>
