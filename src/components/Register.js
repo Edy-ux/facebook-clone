@@ -13,46 +13,46 @@ function Register() {
   const [birthday, setBirthday] = useState([]);
   const [gender, setGender] = useState('');
 
-
-
   const register = (event) => {
     event.preventDefault();
     if (birthday[2] >= 2010) {
       return alert('You are not eligible to register to Facebook!');
     }
 
-
-    auth.createUserWithEmailAndPassword(email, password).then((auth) => {
-      if (auth.user) {
-        auth.user
-          .updateProfile({
-            displayName: firstName + ' ' + lastName,
-            photoURL:
-              'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
-          })
-          .then((s) => {
-            db.collection('users')
-              .doc(auth.user.uid)
-              .set({
-                uid: auth.user.uid,
-                displayName: auth.user.displayName,
-                email: auth.user.email,
-                photoURL:
-                  'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
-                birthday,
-                gender,
-                bio: '',
-              })
-              .then((r) => {
-                history.push('/login');
-              });
-          });
-      }
-    }).catch(e => {
-       alert("Error: " + e.message)
-    })
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth.user) {
+          auth.user
+            .updateProfile({
+              displayName: firstName + ' ' + lastName,
+              photoURL:
+                'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
+            })
+            .then((s) => {
+              db.collection('users')
+                .doc(auth.user.uid)
+                .set({
+                  uid: auth.user.uid,
+                  displayName: auth.user.displayName,
+                  email: auth.user.email,
+                  photoURL:
+                    'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
+                  birthday,
+                  gender,
+                  bio: '',
+                })
+                .then((r) => {
+                  history.push('/login');
+                });
+            });
+        }
+      })
+      .catch((e) => {
+        alert('Error: ' + e.message);
+      });
   };
-  
+
   return (
     <div className="register">
       <img
@@ -339,9 +339,7 @@ function Register() {
               Cadastre-se
             </button>
           </center>
-          <Link to="/login">
-            <p className="register__login">Já tem uma conta?</p>
-          </Link>
+          
         </form>
       </div>
     </div>

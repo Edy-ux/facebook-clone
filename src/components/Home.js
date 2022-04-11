@@ -2,7 +2,7 @@
 import logo from '../assets/bulding.png'
 import '../Home.css'
 
-const urlGoogleRoobtn = 'http://background: url(//www.google.com/images/errors/robot.png) 100%'
+const urlGoogleRoobtn = 'url(//www.google.com/images/errors/robot.png'
 
 function Home() {   
   return (
@@ -10,7 +10,7 @@ function Home() {
      
        <center > 
         <h1>Logo seu perfil aparecerá aqui</h1>
-         <img src={logo} alt="" /> 
+          <img  alt="" /> 
         </center>
     </div>
   );
