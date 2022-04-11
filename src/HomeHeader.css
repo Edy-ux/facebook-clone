@@ -1,0 +1,27 @@
+body{
+    background-color: #18191A;
+    overflow-x: hidden;
+}
+.homeHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #242526;
+  height: 60px;
+  width: 100%;
+  border-bottom: 2px solid #393a3b;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.homeHeaderLogoAndSearch {
+  display: flex;
+  flex-direction: row;
+}
+.homeHeader__logo {
+  height: 40px;
+  width: 41px;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+     

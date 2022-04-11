@@ -31,7 +31,7 @@ function Register() {
             })
             .then((s) => {
               db.collection('users')
-                .doc(auth.user.uid)
+                .doc(auth.user.uid) 
                 .set({
                   uid: auth.user.uid,
                   displayName: auth.user.displayName,

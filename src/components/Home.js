@@ -1,6 +1,6 @@
 
 import logo from '../assets/bulding.png'
-import '../Home.css'
+import '../App.css'
 
 const urlGoogleRoobtn = 'url(//www.google.com/images/errors/robot.png'
 
