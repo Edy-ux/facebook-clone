@@ -9,7 +9,6 @@ import { auth, db } from '../firebase';
 function HomeHeader() {
 
 
-
   return (
     <div class="homeHeader">
       <div class="homeHeaderLogoAndSearch">
