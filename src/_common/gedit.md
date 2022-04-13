@@ -10,8 +10,7 @@ In Command Line:
 4. git push origin master
 
 
-
-5. Você também pode precisar atualizar a origem do seu repositório, se definido como https:</h2>
+5. Você também pode precisar atualizar a origem do seu repositório, se definido como https:
 
 git remote -v 
 git remote remove origin 

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function Register() {
+  
   const history = useHistory('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -13,9 +14,12 @@ function Register() {
   const [birthday, setBirthday] = useState([]);
   const [gender, setGender] = useState('');
 
-  const register = (event) => {
-    event.preventDefault();
-    if (birthday[2] >= 2010) {
+
+  const register = (e) => {
+    console.log(birthday);
+
+    e.preventDefault();
+    if (birthday[2] >= 2012) {
       return alert('You are not eligible to register to Facebook!');
     }
 
@@ -31,7 +35,7 @@ function Register() {
             })
             .then((s) => {
               db.collection('users')
-                .doc(auth.user.uid) 
+                .doc(auth.user.uid)
                 .set({
                   uid: auth.user.uid,
                   displayName: auth.user.displayName,
@@ -68,6 +72,7 @@ function Register() {
           <div className="row">
             <input
               onChange={(e) => {
+              
                 setFirstName(e.target.value);
               }}
               className="register__name"
@@ -77,6 +82,7 @@ function Register() {
             />
             <input
               onChange={(e) => {
+              
                 setLastName(e.target.value);
               }}
               className="register__name"
@@ -89,6 +95,7 @@ function Register() {
             <input
               required
               onChange={(e) => {
+                
                 setEmail(e.target.value);
               }}
               type="email"
@@ -107,7 +114,8 @@ function Register() {
           <div className="row">
             <select
               className="register__dates"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
+              onChange={(e) =>   setBirthday(e.target.value)}
+
             >
               <option value="Day">Dia</option>
               <option value="1">1</option>
@@ -164,7 +172,9 @@ function Register() {
 
             <select
               className="register__dates"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
+              onChange={(e) => {
+                setBirthday([...birthday, e.target.value]);
+              }}
             >
               <option value="year">Ano</option>
               <option value="2022">2022</option>
@@ -339,7 +349,6 @@ function Register() {
               Cadastre-se
             </button>
           </center>
-          
         </form>
       </div>
     </div>

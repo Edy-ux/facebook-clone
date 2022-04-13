@@ -29,7 +29,7 @@ function Login() {
           errorMessage =	
             "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído ou é inexistente";
           alert(errorMessage);
-          console.log(errorMessage);
+         
         }
 
         /* 
@@ -69,7 +69,7 @@ function Login() {
               type="password"
               placeholder="Senha"
               onChange={(e) => setPassword(e.target.value)}
-              s
+              
             />
           </center>
 
