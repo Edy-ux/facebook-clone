@@ -25,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login" component={LazyLoading(Login)} />
+        <Route path="/" component={LazyLoading(Login)} />
         <Route path="/sing-up" component={LazyLoading(Register)} />
         <Route path="/home" component={LazyLoading(HomeHeader)}/>
         
