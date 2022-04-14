@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth,db} from "../firebase";
+import { auth} from "../firebase";
 import "../Login.css";
 import { Link, useHistory } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [info, setInfo] = useState("");
-  
+
   const login = (event) => {
     event.preventDefault();
     if (email === "" || password === "") {
