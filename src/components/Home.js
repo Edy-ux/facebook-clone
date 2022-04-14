@@ -2,11 +2,11 @@ import React from 'react';
 import '../HomeHeader.css';
 
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+/* import { useHistory } from 'react-router-dom'; */
 import { auth, db } from '../firebase';
 
 
-function HomeHeader() {
+function Home() {
 
 
   return (
@@ -38,4 +38,4 @@ function HomeHeader() {
   );
 }
 
-export default HomeHeader;
+export default Home;
