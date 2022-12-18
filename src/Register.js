@@ -3,27 +3,67 @@ import { auth, db } from './firebase';
 import './Register.css';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Input from './components/Inputs';
 
 function Register() {
-  
+
   const history = useHistory('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [birthday, setBirthday] = useState([]);
+  const [birthday, setBirthday] = useState({});
   const [gender, setGender] = useState('');
+  console.log(birthday)
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    birthday: {},
+    login: {
+      email: '', password: '', gender: ''
+    },
+
+
+  })
+
+  const newData = (prev, dynamicProp, event, stateProp) => ({
+    ...prev[stateProp],
+    [dynamicProp]: event.target.value,
+  })
+  /* const newBirthday = (prev, dynamicProp, { target }) => ({
+    ...prev.birthday,
+    [dynamicProp]: target.value
+  }) */
+  console.log(values);
+  const inputs = [
+    {
+      id: 1,
+      name: "firstName",
+      type: "text",
+      errorMessage: "Nome deve ter entre 3-20 caracteres, não deve incluir numéros ou qualquer caracter especial!",
+      placeholder: "Digite seu nome",
+      pattern: '^[A-Za-z ]{4,30}$',
+      required: true,
+    },
+
+    {
+      id: 2,
+      name: "lastName",
+      type: "text",
+      errorMessage: "Sobrenome deve ter entre 3-20 caracteres",
+      placeholder: "Sobrenome  ",
+      pattern: '^[A-Za-z ]{4,30}$',
+      required: true,
+
+    }
+  ]
 
   const register = (event) => {
     event.preventDefault();
-    if (birthday[2] >= 2010) {
+    if (birthday.year >= 2010) {
       return alert('You are not eligible to register to Facebook!');
     }
-    auth.createUserWithEmailAndPassword(email, password).then((auth) => {
+    auth.createUserWithEmailAndPassword(values.login.email, values.login.password).then((auth) => {
       if (auth.user) {
         auth.user
           .updateProfile({
-            displayName: firstName + ' ' + lastName,
+            displayName: values.firstName + ' ' + values.lastName,
             photoURL:
               'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
           })
@@ -45,47 +85,44 @@ function Register() {
               });
           });
       }
-    }); /* .catch(e => {
-       alert("Error: " + e.message)
-    }) */
+    }).catch(e => {
+      console.error("Error: " + e.message)
+    })
   };
   return (
     <div className="register">
       <img
         src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
-        class="register__logo"
+        className="register__logo"
         alt="img-register-facebook"
       />
       <div className="register__container">
         <h1>Cadastre-se</h1>
         <p>É rápido e fácil.</p>
         <span className="hr3"></span>
-        <form>
+        <form onSubmit={register}>
           <div className="row">
-            <input
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-              className="register__name"
-              type="name"
-              placeholder="Nome"
-              required
-            />
-            <input
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-              className="register__name"
-              type="name"
-              placeholder="Sobrenome"
-              required
-            />
+            {
+              inputs.map((input, i) => (
+                <>
+                  <Input key={input.id} {...input} onChange={({ target }) => setValues(prev => ({
+                    ...prev, [input.name]: target.value
+                  }))} value={values[i]} />
+                </>
+              ))
+            }
+
           </div>
           <center>
             <input
-              onChange={(e) => {
-                setEmail(e.target.value);
+               onChange={(e) => {
+                setValues(prev => ({
+                  ...prev,
+                  login: newData(prev, 'email', e, 'login')
+                }));
+
               }}
+              values={values.login.email}
               type="email"
               placeholder="Email"
               required
@@ -93,17 +130,30 @@ function Register() {
           </center>
           <center>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setValues(prev => ({
+                  ...prev,
+                  login: newData(prev, 'password', e, 'login')
+                }));
+
+              }}
+              value={values.login.password}
               type="password"
-              placeholder="Nova senha"
+              placeholder="Senha"
               required
+            
             />
           </center>
           <h5 className="register__date">Data de Nascimento</h5>
           <div className="row">
             <select
               className="register__dates"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
+              onChange={(e) => {
+                setValues(prev => ({
+                  ...prev,
+                  birthday: newData(prev, 'day', e,'birthday' )
+                }))
+              }}
             >
               <option value="Day">Dia</option>
               <option value="1">1</option>
@@ -141,7 +191,12 @@ function Register() {
 
             <select
               className="register__dates"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
+              onChange={(e) => {
+                setValues(prev => ({
+                  ...prev,
+                  birthday: newData(prev, 'month', e,'birthday' )
+                }))
+              }}
             >
               <option value="Day">Mês</option>
               <option value="1">Janeiro</option>
@@ -159,8 +214,12 @@ function Register() {
             </select>
 
             <select
-              className="register__dates"
-              onChange={(e) => setBirthday([...birthday, e.target.value])}
+               onChange={(e) => {
+                setValues(prev => ({
+                  ...prev,
+                  birthday: newData(prev, 'year', e, 'birthday' )
+                }))
+              }}
             >
               <option value="year">Ano</option>
               <option value="2022">2022</option>
@@ -328,7 +387,6 @@ function Register() {
 
           <center>
             <button
-              onClick={register}
               type="submit"
               className="register__register"
             >

@@ -1,0 +1,27 @@
+.row input {
+    height: 35px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 0.5px solid gray;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 20px;
+    border: 1px solid #dddfe2;
+    color: #1d2129;
+    line-height: 16px;
+    font-size: 15px;
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 200px;
+  }
+
+
+input:not(:focus):not(:placeholder-shown):invalid ~ span {
+    display: block !important;
+ }
+  
+
+ 
+ input:not(:focus):not(:placeholder-shown):invalid  {
+  border: solid 1px  red !important;
+}
