@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { auth, db } from './firebase';
-import './Register.css';
+import { auth, db } from '../firebase';
+import '../Register.css';
 import { useHistory } from 'react-router-dom';
+<<<<<<< HEAD:src/Register.js
 import { Link } from 'react-router-dom';
 import Input from './components/Inputs';
+=======
+>>>>>>> 011a57a58a2f6069027c7cfdfd6e670c23cdd9a9:src/components/Register.js
 
 function Register() {
 
@@ -54,6 +57,7 @@ function Register() {
     }
   ]
 
+<<<<<<< HEAD:src/Register.js
   const register = (event) => {
     event.preventDefault();
     if (birthday.year >= 2010) {
@@ -88,7 +92,51 @@ function Register() {
     }).catch(e => {
       console.error("Error: " + e.message)
     })
+=======
+
+  const register = (e) => {
+    console.log(birthday);
+
+    e.preventDefault();
+    if (birthday[2] >= 2012) {
+      return alert('You are not eligible to register to Facebook!');
+    }
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth.user) {
+          auth.user
+            .updateProfile({
+              displayName: firstName + ' ' + lastName,
+              photoURL:
+                'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
+            })
+            .then((s) => {
+              db.collection('users')
+                .doc(auth.user.uid)
+                .set({
+                  uid: auth.user.uid,
+                  displayName: auth.user.displayName,
+                  email: auth.user.email,
+                  photoURL:
+                    'https://i.ibb.co/1zmBtwr/84241059-189132118950875-4138507100605120512-n.jpg',
+                  birthday,
+                  gender,
+                  bio: '',
+                })
+                .then((r) => {
+                  history.push('/login');
+                });
+            });
+        }
+      })
+      .catch((e) => {
+        alert('Error: ' + e.message);
+      });
+>>>>>>> 011a57a58a2f6069027c7cfdfd6e670c23cdd9a9:src/components/Register.js
   };
+
   return (
     <div className="register">
       <img
@@ -102,6 +150,7 @@ function Register() {
         <span className="hr3"></span>
         <form onSubmit={register}>
           <div className="row">
+<<<<<<< HEAD:src/Register.js
             {
               inputs.map((input, i) => (
                 <>
@@ -121,11 +170,39 @@ function Register() {
                   login: newData(prev, 'email', e, 'login')
                 }));
 
+=======
+            <input
+              onChange={(e) => {
+              
+                setFirstName(e.target.value);
+              }}
+              className="register__name"
+              type="name"
+              placeholder="Nome"
+              required
+            />
+            <input
+              onChange={(e) => {
+              
+                setLastName(e.target.value);
+              }}
+              className="register__name"
+              type="name"
+              placeholder="Sobrenome"
+              required
+            />
+          </div>
+          <center>
+            <input
+              required
+              onChange={(e) => {
+                
+                setEmail(e.target.value);
+>>>>>>> 011a57a58a2f6069027c7cfdfd6e670c23cdd9a9:src/components/Register.js
               }}
               values={values.login.email}
               type="email"
               placeholder="Email"
-              required
             />
           </center>
           <center>
@@ -148,12 +225,17 @@ function Register() {
           <div className="row">
             <select
               className="register__dates"
+<<<<<<< HEAD:src/Register.js
               onChange={(e) => {
                 setValues(prev => ({
                   ...prev,
                   birthday: newData(prev, 'day', e,'birthday' )
                 }))
               }}
+=======
+              onChange={(e) =>   setBirthday(e.target.value)}
+
+>>>>>>> 011a57a58a2f6069027c7cfdfd6e670c23cdd9a9:src/components/Register.js
             >
               <option value="Day">Dia</option>
               <option value="1">1</option>
@@ -214,11 +296,17 @@ function Register() {
             </select>
 
             <select
+<<<<<<< HEAD:src/Register.js
                onChange={(e) => {
                 setValues(prev => ({
                   ...prev,
                   birthday: newData(prev, 'year', e, 'birthday' )
                 }))
+=======
+              className="register__dates"
+              onChange={(e) => {
+                setBirthday([...birthday, e.target.value]);
+>>>>>>> 011a57a58a2f6069027c7cfdfd6e670c23cdd9a9:src/components/Register.js
               }}
             >
               <option value="year">Ano</option>
@@ -393,9 +481,6 @@ function Register() {
               Cadastre-se
             </button>
           </center>
-          <Link to="/login">
-            <p className="register__login">Já tem uma conta?</p>
-          </Link>
         </form>
       </div>
     </div>

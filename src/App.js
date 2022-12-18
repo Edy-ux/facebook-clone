@@ -1,29 +1,26 @@
+import { lazy } from 'react';
+import LazyLoading from './_common/LazyLoading';
+import React  from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import './App.css';
 
-import { lazy } from "react";
-
-
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import LazyLoading from "./_common/LazyLoading";
-
-/* 
-import Login from "./Login";
-import Register from "./Register";
-import Home from "./Home";
- */
-const Login = lazy(()=> import("./Login"))
-const Register = lazy(()=> import("./Register"))
-const Home = lazy(()=> import("./Home"))
-
+const HomeHeader = lazy(() => import('./components/Home'));
+const Login = lazy(() => import('./components/Login'));
+const Register = lazy(() => import('./components/Register'));
+  
 function App() {
+
+
+
+
   return (
     <BrowserRouter>
-
       <Switch>
-        <Route path="/login" component={LazyLoading(Login)} />
+       
         <Route path="/sing-up" component={LazyLoading(Register)} />
-        <Route path="/home" component={LazyLoading(Home)} />
+        <Route path="/home" component={LazyLoading(HomeHeader)}/>
         <Route path="/" component={LazyLoading(Login)} />
-      
+        
       </Switch>
     </BrowserRouter>
   );

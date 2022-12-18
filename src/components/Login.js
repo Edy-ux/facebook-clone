@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { auth } from "./firebase";
-import "./Login.css";
+import { auth} from "../firebase";
+import "../Login.css";
 import { Link, useHistory } from "react-router-dom";
 
 function Login() {
@@ -8,6 +8,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [info, setInfo] = useState("");
+
   const login = (event) => {
     event.preventDefault();
     if (email === "" || password === "") {
@@ -29,7 +30,7 @@ function Login() {
           errorMessage =	
             "Não há registro de usuário correspondente a este identificador. O usuário pode ter sido excluído ou é inexistente";
           alert(errorMessage);
-          console.log(errorMessage);
+         
         }
 
         /* 
@@ -69,7 +70,7 @@ function Login() {
               type="password"
               placeholder="Senha"
               onChange={(e) => setPassword(e.target.value)}
-              s
+              
             />
           </center>
 
